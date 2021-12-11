@@ -8,6 +8,9 @@ const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_
 
 const prefix = "!";
 
+//const url = "http://localhost:8080";
+const url = "https://tft-manager.herokuapp.com/";
+
 let teste = [];
 
 client.on("ready", c => {
@@ -43,7 +46,7 @@ client.on("messageCreate", function (message) {
 
     if (command === "config") {
         let server = message.guild.id;
-        fetch('http://localhost:8080/api/v1/discord/' + server)
+        fetch(url + '/api/v1/discord/' + server)
             .then(res => res.json())
             .then(json => {
                 if (json.response == null) {
@@ -78,7 +81,7 @@ client.on("messageCreate", function (message) {
                         ]
                     };
 
-                    fetch('http://localhost:8080/api/v1/discord/discordConfig', {
+                    fetch(url + '/api/v1/discord/discordConfig', {
                         method: 'POST',
                         body: JSON.stringify(configD),
                         headers: { 'Content-Type': 'application/json' }
@@ -94,7 +97,7 @@ client.on("messageCreate", function (message) {
             });
     } else if (command === "tabela") {
         let serverId = message.guild.id;
-        fetch('http://localhost:8080/api/v1/discord/tabela/' + serverId)
+        fetch(url + '/api/v1/discord/tabela/' + serverId)
             .then(res => res.json())
             .then(json => message.reply(json.response));
     }
@@ -105,7 +108,7 @@ client.login(config.BOT_TOKEN);
 
 function connect() {
     return new Promise((resolve, reject) => {
-        let stompClient = Stomp.over(new SockJS("http://localhost:8080/websocket"))
+        let stompClient = Stomp.over(new SockJS(url + "/websocket"))
         stompClient.connect({}, (frame) => {
             var url = stompClient.ws._transport.url;
             this.sessionId = url.split("/")[5];

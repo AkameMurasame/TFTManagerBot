@@ -9,7 +9,7 @@ const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_
 const prefix = "!";
 
 //const url = "http://localhost:8080";
-const url = "https://tft-manager.herokuapp.com/";
+const url = "https://tft-manager.herokuapp.com";
 
 let teste = [];
 

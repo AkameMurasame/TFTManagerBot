@@ -1,0 +1,10 @@
+{
+  "name": "TFTManagerBot",
+  "version": "1.0.0",
+  "description": "TFTManager Bot",
+  "main": "bot.js",
+  "author": "Victor 'Akame' Emiliano",
+  "dependencies": {
+    "winston": "^3.3.3"
+  }
+}
